@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender.CSharp", "Sender.CSharp\Sender.CSharp.csproj", "{4EDFFB25-04D2-452B-A601-861A2934695C}"
+EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Sender.FSharp", "Sender.FSharp\Sender.FSharp.fsproj", "{98B63538-3A80-4F8E-95CD-AAC1BB84146F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EDFFB25-04D2-452B-A601-861A2934695C}.Debug|x86.ActiveCfg = Debug|x86
+		{4EDFFB25-04D2-452B-A601-861A2934695C}.Debug|x86.Build.0 = Debug|x86
+		{4EDFFB25-04D2-452B-A601-861A2934695C}.Release|x86.ActiveCfg = Release|x86
+		{4EDFFB25-04D2-452B-A601-861A2934695C}.Release|x86.Build.0 = Release|x86
+		{98B63538-3A80-4F8E-95CD-AAC1BB84146F}.Debug|x86.ActiveCfg = Debug|x86
+		{98B63538-3A80-4F8E-95CD-AAC1BB84146F}.Debug|x86.Build.0 = Debug|x86
+		{98B63538-3A80-4F8E-95CD-AAC1BB84146F}.Release|x86.ActiveCfg = Release|x86
+		{98B63538-3A80-4F8E-95CD-AAC1BB84146F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal

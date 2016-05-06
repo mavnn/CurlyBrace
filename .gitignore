@@ -1,0 +1,8 @@
+packages
+paket-files
+*.exe
+*.dll
+.#*
+bin/
+obj/
+*.userprefs
