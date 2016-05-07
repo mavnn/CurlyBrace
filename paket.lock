@@ -1,5 +1,6 @@
-FRAMEWORK: NET451
+FRAMEWORK: NET45
 NUGET
   remote: https://www.nuget.org/api/v2
   specs:
     CsvHelper (2.14.2)
+    FSharp.Data (2.3)
