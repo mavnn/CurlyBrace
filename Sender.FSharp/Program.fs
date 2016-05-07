@@ -4,32 +4,51 @@ open FSharp.Data
 
 type CsvData = CsvProvider<"emails.csv">
 
-let sendEmail emailAddress subject message =
-  if String.IsNullOrWhiteSpace emailAddress then
+type EmailInformation =
+  {
+    EmailAddress : string
+    Subject : string
+    Message : string
+  }
+
+type SendResult =
+  | Success of Address : string
+  | Failure of Reason : string
+
+type ProcessingResult =
+  {
+    Sent : int
+    Failed : int
+  }
+
+let sendEmail emailInfo =
+  if String.IsNullOrWhiteSpace emailInfo.EmailAddress then
     printfn "Email send failed...\n"
-    false
+    Failure "Missing email address"
   else
     printfn "Email send! To: %s\nSubject: %s\nMessage: %s"
-      emailAddress
-      subject
-      message
-    true
+      emailInfo.EmailAddress
+      emailInfo.Subject
+      emailInfo.Message
+    Success emailInfo.EmailAddress
 
 let processCsv emailSender rows =
   let rowToEmail (row : CsvData.Row) =
     let subject = "Hi, " + row.Name
-    emailSender row.``Email address`` subject row.Message
+    emailSender { EmailAddress = row.``Email address``
+                  Subject = subject
+                  Message = row.Message }
+  let fold count result =
+    match result with
+    | Success _ -> { count with Sent = count.Sent + 1 }
+    | Failure _ -> { count with Failed = count.Failed + 1 }
   rows
   |> Seq.distinct
   |> Seq.map rowToEmail
-  |> Seq.filter id
-  |> Seq.length
+  |> Seq.fold fold { Sent = 0; Failed = 0 }
 
-let main () =
-  let processor = processCsv sendEmail
-
-  let rows = CsvData.Load "emails.csv"
-  let sentCount = processor rows.Rows
-  printfn "Total Emails Sent: %d" sentCount
-
-main ()
+let processor = processCsv sendEmail
+let rows = CsvData.Load "emails.csv"
+let processingResults = processor rows.Rows
+printfn "Total Emails Sent: %d" processingResults.Sent
+printfn "Total Emails Failed: %d" processingResults.Failed
